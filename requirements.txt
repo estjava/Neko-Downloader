@@ -1,7 +1,12 @@
 requests==2.32.3
 beautifulsoup4==4.12.3
 lxml==5.2.1
-downloader
-utils
-ree
-clf2
+downloader==0.98
+utils==1.0.2
+
+# ree
+# clf2
+
+requests==2.32.3
+beautifulsoup4==4.12.3
+lxml==5.2.1
