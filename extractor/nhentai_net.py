@@ -1,12 +1,10 @@
-import requests
-from bs4 import BeautifulSoup
-import os
+#coding:utf8
 import downloader
 import ree as re
 from utils import Soup, urljoin, LazyUrl, Downloader, try_n, join, get_ext
 import os
 import json
-import cloudflare
+import clf2
 
 
 def get_id(url):
@@ -25,9 +23,7 @@ class Downloader_nhentai(Downloader):
     ACCEPT_COOKIES = [r'(.*\.)?nhentai\.net']
 
     def init(self):
-        # self.session = clf2.solve(self.url, cw=self.cw)['session'] 
-        # #4541
-        self.session = cloudflare.solve(self.url, cw=self.cw)['session'] 
+        self.session = clf2.solve(self.url, cw=self.cw)['session'] #4541
 
     @classmethod
     def fix_url(cls, url):
@@ -35,6 +31,7 @@ class Downloader_nhentai(Downloader):
 
     def read(self):
         info, imgs = get_imgs(get_id(self.url), self.session)
+
         # 1225
         artist = join(info.artists)
         self.artist = artist if info.artists else None
@@ -45,6 +42,7 @@ class Downloader_nhentai(Downloader):
 
         for img in imgs:
             self.urls.append(img.url)
+
         self.title = title
 
 
@@ -97,8 +95,7 @@ def get_info(id, session):
 
     data = html.split('JSON.parse(')[1].split(');')[0]
     gal = json.loads(json.loads(data))
-    host = 'https://i.nhentai.net'
-    #re.find('''media_url: *['"]([^'"]+)''', html, err='no host')
+    host = 'https://i.nhentai.net'#re.find('''media_url: *['"]([^'"]+)''', html, err='no host')
 
     id = int(gal['id'])
     id_media = int(gal['media_id'])
