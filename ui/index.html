@@ -4,293 +4,64 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Neko Downloader</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-      body {
-        background: #1a1a1a;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        padding: 0;
-        margin: 0;
-        overflow: hidden;
-      }
-
-      .container {
-        max-width: 100%;
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-      }
-
-      .top {
-        background: #2d2d2d !important;
-        padding: 8px 15px;
-        border-bottom: 1px solid #404040;
-        -webkit-app-region: drag;
-      }
-
-      .logos {
-        font-weight: 600;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-      }
-
-      .logos i {
-        color: #ff6b6b;
-        font-size: 1.2em;
-      }
-
-      .btn-group {
-        -webkit-app-region: no-drag;
-      }
-
-      .btn-group .btn {
-        background: transparent;
-        border: none;
-        color: #aaa;
-        padding: 4px 12px;
-        transition: all 0.2s;
-      }
-
-      .btn-group .btn:hover {
-        background: #404040;
-        color: #fff;
-      }
-
-      .btn-group .btn.close:hover {
-        background: #e74c3c;
-        color: #fff;
-      }
-
-      .nav {
-        background: #2d2d2d;
-        border-bottom: 1px solid #404040;
-        padding: 0;
-      }
-
-      .nav-link {
-        color: #aaa !important;
-        padding: 10px 20px;
-        transition: all 0.2s;
-        border-bottom: 2px solid transparent;
-      }
-
-      .nav-link:hover,
-      .nav-link.active {
-        color: #fff !important;
-        background: #363636;
-        border-bottom-color: #ff6b6b;
-      }
-
-      .mid {
-        flex: 1;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-      }
-
-      .ctx {
-        background: #252525 !important;
-        flex: 1;
-        overflow-y: auto;
-      }
-
-      .form {
-        gap: 10px;
-      }
-
-      .form-control {
-        background: #1a1a1a;
-        border: 1px solid #404040;
-        color: #fff;
-        padding: 8px 15px;
-      }
-
-      .form-control:focus {
-        background: #1a1a1a;
-        border-color: #ff6b6b;
-        color: #fff;
-        box-shadow: 0 0 0 0.2rem rgba(255, 107, 107, 0.25);
-      }
-
-      .form-control::placeholder {
-        color: #666;
-      }
-
-      .btn.dl {
-        background: #ff6b6b;
-        color: #fff;
-        border: none;
-        padding: 8px 20px;
-        transition: all 0.2s;
-        white-space: nowrap;
-      }
-
-      .btn.dl:hover {
-        background: #ff5252;
-        transform: translateY(-1px);
-      }
-
-      .download-list {
-        margin-top: 15px;
-      }
-
-      .download-item {
-        background: #1a1a1a;
-        border: 1px solid #404040;
-        border-radius: 6px;
-        padding: 15px;
-        margin-bottom: 10px;
-        transition: all 0.2s;
-      }
-
-      .download-item:hover {
-        border-color: #ff6b6b;
-        transform: translateX(2px);
-      }
-
-      .download-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 10px;
-      }
-
-      .download-name {
-        color: #fff;
-        font-weight: 500;
-        flex: 1;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-
-      .download-size {
-        color: #888;
-        font-size: 0.9em;
-        margin-left: 15px;
-      }
-
-      .download-status {
-        display: flex;
-        gap: 8px;
-      }
-
-      .download-status .btn {
-        padding: 4px 10px;
-        font-size: 0.85em;
-      }
-
-      .progress {
-        height: 8px;
-        background: #1a1a1a;
-        border: 1px solid #404040;
-      }
-
-      .progress-bar {
-        background: linear-gradient(90deg, #ff6b6b, #ff8e8e);
-        transition: width 0.3s ease;
-      }
-
-      .download-info {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 8px;
-        font-size: 0.85em;
-        color: #888;
-      }
-
-      .status-badge {
-        display: inline-block;
-        padding: 2px 8px;
-        border-radius: 3px;
-        font-size: 0.75em;
-        font-weight: 600;
-        margin-right: 8px;
-      }
-
-      .status-downloading {
-        background: #ff6b6b;
-        color: #fff;
-      }
-
-      .status-completed {
-        background: #51cf66;
-        color: #fff;
-      }
-
-      .status-paused {
-        background: #ffd43b;
-        color: #333;
-      }
-
-      .status-error {
-        background: #ff6b6b;
-        color: #fff;
-      }
-
-      .bot {
-        background: #2d2d2d;
-        border-top: 1px solid #404040;
-        padding: 10px 15px;
-        color: #888;
-        font-size: 0.85em;
-        display: flex;
-        justify-content: space-between;
-      }
-
-      .empty-state {
-        text-align: center;
-        padding: 60px 20px;
-        color: #666;
-      }
-
-      .empty-state i {
-        font-size: 4em;
-        margin-bottom: 20px;
-        opacity: 0.3;
-      }
-    </style>
+    <link rel="stylesheet" href="../src-ui/src/lib/bootstrap-5.3.8/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../src-ui/src/lib/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../src-ui/src/css/style.css">
   </head>
   <body>
-    <div class="container">
-        <div class="top d-flex overflow-hidden justify-content-between bg-dark text-light">
+    <div class="container nekodl">
+        <div class="top">
             <div class="logos">
-                <i class="fa-brands fa-opera"></i> Neko Downloader
+              <span><i class="fa fa-cloud-download" aria-hidden="true"></i> Neko Downloader</span>
             </div>
             <div class="btn-group" role="group" aria-label="window-controls">
-                <button type="button" class="btn" id="minimizeBtn">
-                    <i class="fa-solid fa-window-minimize"></i>
-                </button>
-                <button type="button" class="btn" id="maximizeBtn">
-                    <i class="fa-regular fa-window-maximize"></i>
-                </button>
-                <button type="button" class="btn close" id="closeBtn">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
+                <button type="button" class="btn min" id="minimizeBtn"><i class="fa fa-window-minimize"></i></button>
+                <button type="button" class="btn max" id="maximizeBtn"><i class="fa fa-window-maximize"></i></button>
+                <button type="button" class="btn close" id="closeBtn"><i class="fa fa-window-close"></i></button>
             </div>
         </div>
         
         <div class="mid">
-            <nav class="nav">
-                <li class="nav-item"><a class="nav-link active" href="#" data-tab="task">Task</a></li>
-                <li class="nav-item"><a class="nav-link" href="#" data-tab="tools">Tools</a></li>
-                <li class="nav-item"><a class="nav-link" href="#" data-tab="options">Options</a></li>
-                <li class="nav-item"><a class="nav-link" href="#" data-tab="help">Help</a></li>
+            <nav class="nav tab-menu">
+                <li class="nav-item">
+                  <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Task</a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">Something</a></li>
+                    <li><a class="dropdown-item" href="#">Separated</a></li>
+                  </ul>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Tools</a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Something</a></li>
+                  </ul>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Options</a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#"><i class="fa fa-cog"></i> Settings</a></li>
+                  </ul>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Help</a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#"><i class="fa fa-info-circle"></i> About</a></li>
+                  </ul>
+                </li>
             </nav>
             
-            <div class="ctx bg-dark p-3">
-                <div class="form d-flex justify-content-between p-1 mb-3">
+            <div class="ndl p-2 py-1">
+                <div class="form d-flex p-1 mb-3">
                     <input class="form-control form-control-sm" type="text" id="urlInput" placeholder="Please type some URLs!" aria-label="URL input">
-                    <button type="button" class="btn dl" id="addDownload">
-                        <i class="fa-solid fa-download"></i> Download
-                    </button>
+                    <button type="button" class="btn dl btn-sm" id="addDownload"><span><i class="fa fa-download"></i> Download</span></button>
                 </div>
                 
                 <div class="download-list" id="downloadList">
                     <div class="empty-state">
-                        <i class="fa-solid fa-cloud-arrow-down"></i>
+                        <i class="fa fa-cloud-arrow-down"></i>
                         <p>No downloads yet. Add a URL to get started!</p>
                     </div>
                 </div>
@@ -299,258 +70,14 @@
         
         <div class="bot">
             <div>
-                <span id="totalDownloads">0</span> downloads | 
-                <span id="activeDownloads">0</span> active
+                <span id="totalDownloads">0</span> downloads | <span id="activeDownloads">0</span> active
             </div>
             <div>
-                Speed: <span id="totalSpeed">0 KB/s</span>
+              Speed: <span id="totalSpeed">0 KB/s</span>
             </div>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script type="module">
-      // Import Tauri API
-      import { invoke } from 'https://cdn.jsdelivr.net/npm/@tauri-apps/api@1.5.0/+esm';
-      import { appWindow } from 'https://cdn.jsdelivr.net/npm/@tauri-apps/api@1.5.0/window/+esm';
-      import { listen } from 'https://cdn.jsdelivr.net/npm/@tauri-apps/api@1.5.0/event/+esm';
-      import { save } from 'https://cdn.jsdelivr.net/npm/@tauri-apps/api@1.5.0/dialog/+esm';
-
-      let downloads = {};
-
-      // Window controls
-      document.getElementById('minimizeBtn').addEventListener('click', () => {
-        appWindow.minimize();
-      });
-
-      document.getElementById('maximizeBtn').addEventListener('click', async () => {
-        const isMaximized = await appWindow.isMaximized();
-        if (isMaximized) {
-          appWindow.unmaximize();
-        } else {
-          appWindow.maximize();
-        }
-      });
-
-      document.getElementById('closeBtn').addEventListener('click', () => {
-        appWindow.close();
-      });
-
-      // Tab switching
-      document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', (e) => {
-          e.preventDefault();
-          document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-          e.target.classList.add('active');
-        });
-      });
-
-      // Add download
-      document.getElementById('addDownload').addEventListener('click', async () => {
-        const url = document.getElementById('urlInput').value.trim();
-        if (!url) {
-          alert('Please enter a URL!');
-          return;
-        }
-
-        // Extract filename from URL
-        let filename = url.split('/').pop() || 'download';
-        if (!filename.includes('.')) {
-          filename += '.file';
-        }
-
-        // Open save dialog
-        const savePath = await save({
-          defaultPath: filename,
-          filters: [{
-            name: 'All Files',
-            extensions: ['*']
-          }]
-        });
-
-        if (!savePath) return;
-
-        try {
-          // Start download via Rust backend
-          const downloadId = await invoke('start_download', {
-            url: url,
-            filename: filename,
-            savePath: savePath
-          });
-
-          // Add to UI
-          addDownloadToUI({
-            id: downloadId,
-            url: url,
-            name: filename,
-            path: savePath,
-            progress: 0,
-            speed: 0,
-            total: 0,
-            status: 'downloading'
-          });
-
-          document.getElementById('urlInput').value = '';
-          updateStats();
-        } catch (error) {
-          console.error('Failed to start download:', error);
-          alert('Failed to start download: ' + error);
-        }
-      });
-
-      // Listen for download progress
-      listen('download-progress', (event) => {
-        const progress = event.payload;
-        updateDownloadProgress(progress);
-      });
-
-      // Listen for download completion
-      listen('download-complete', (event) => {
-        const downloadId = event.payload;
-        completeDownload(downloadId);
-      });
-
-      // Listen for download errors
-      listen('download-error', (event) => {
-        const error = event.payload;
-        console.error('Download error:', error);
-        alert(error);
-      });
-
-      function addDownloadToUI(download) {
-        // Remove empty state
-        const emptyState = document.querySelector('.empty-state');
-        if (emptyState) emptyState.remove();
-
-        downloads[download.id] = download;
-
-        const downloadList = document.getElementById('downloadList');
-        const item = document.createElement('div');
-        item.className = 'download-item';
-        item.id = 'download-' + download.id;
-        item.innerHTML = `
-          <div class="download-header">
-            <div class="download-name" title="${download.name}">${download.name}</div>
-            <div class="download-size">0 MB / 0 MB</div>
-            <div class="download-status">
-              <button class="btn btn-sm btn-outline-danger remove-btn" data-id="${download.id}">
-                <i class="fa-solid fa-trash"></i>
-              </button>
-            </div>
-          </div>
-          <div class="progress">
-            <div class="progress-bar" role="progressbar" style="width: 0%"></div>
-          </div>
-          <div class="download-info">
-            <span class="status-text">
-              <span class="status-badge status-downloading">Downloading</span>
-              <span class="progress-text">0%</span>
-            </span>
-            <span class="speed-text">0 KB/s</span>
-          </div>
-        `;
-        
-        downloadList.appendChild(item);
-
-        // Event listeners
-        item.querySelector('.remove-btn').addEventListener('click', () => removeDownload(download.id));
-      }
-
-      function updateDownloadProgress(progress) {
-        const download = downloads[progress.id];
-        if (!download) return;
-
-        download.progress = progress.percentage;
-        download.speed = progress.speed;
-        download.downloaded = progress.downloaded;
-        download.total = progress.total;
-
-        const item = document.getElementById('download-' + progress.id);
-        if (!item) return;
-
-        const progressBar = item.querySelector('.progress-bar');
-        const progressText = item.querySelector('.progress-text');
-        const speedText = item.querySelector('.speed-text');
-        const sizeText = item.querySelector('.download-size');
-
-        progressBar.style.width = progress.percentage + '%';
-        progressText.textContent = Math.floor(progress.percentage) + '%';
-        speedText.textContent = progress.speed.toFixed(2) + ' KB/s';
-        
-        const downloadedMB = (progress.downloaded / (1024 * 1024)).toFixed(2);
-        const totalMB = (progress.total / (1024 * 1024)).toFixed(2);
-        sizeText.textContent = `${downloadedMB} MB / ${totalMB} MB`;
-
-        updateStats();
-      }
-
-      function completeDownload(downloadId) {
-        const download = downloads[downloadId];
-        if (!download) return;
-
-        download.status = 'completed';
-        download.speed = 0;
-
-        const item = document.getElementById('download-' + downloadId);
-        if (!item) return;
-
-        const statusBadge = item.querySelector('.status-badge');
-        const speedText = item.querySelector('.speed-text');
-
-        statusBadge.className = 'status-badge status-completed';
-        statusBadge.textContent = 'Completed';
-        speedText.textContent = 'Done';
-
-        updateStats();
-      }
-
-      async function removeDownload(id) {
-        try {
-          await invoke('remove_download', { id: id });
-          
-          delete downloads[id];
-          const item = document.getElementById('download-' + id);
-          if (item) item.remove();
-
-          // Show empty state if no downloads
-          if (Object.keys(downloads).length === 0) {
-            const downloadList = document.getElementById('downloadList');
-            downloadList.innerHTML = `
-              <div class="empty-state">
-                <i class="fa-solid fa-cloud-arrow-down"></i>
-                <p>No downloads yet. Add a URL to get started!</p>
-              </div>
-            `;
-          }
-
-          updateStats();
-        } catch (error) {
-          console.error('Failed to remove download:', error);
-        }
-      }
-
-      function updateStats() {
-        const totalDownloads = Object.keys(downloads).length;
-        document.getElementById('totalDownloads').textContent = totalDownloads;
-        
-        const activeDownloads = Object.values(downloads).filter(d => d.status === 'downloading').length;
-        document.getElementById('activeDownloads').textContent = activeDownloads;
-
-        const totalSpeed = Object.values(downloads)
-          .filter(d => d.status === 'downloading')
-          .reduce((sum, d) => sum + (d.speed || 0), 0);
-        document.getElementById('totalSpeed').textContent = totalSpeed.toFixed(2) + ' KB/s';
-      }
-
-      // Load existing downloads on startup
-      window.addEventListener('DOMContentLoaded', async () => {
-        try {
-          const existingDownloads = await invoke('get_downloads');
-          // Handle existing downloads if any
-        } catch (error) {
-          console.error('Failed to load downloads:', error);
-        }
-      });
-    </script>
+    <script src="../src-ui/src/lib/bootstrap-5.3.8/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
