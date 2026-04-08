@@ -1,9 +1,11 @@
-body {/* background: #1a1a1a; */font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;padding: 0;margin: 0;overflow: hidden;}
-.container {/* max-width: 100%;height: 100vh; */display: flex;flex-direction: column;}
-.nekodl {background: #2d2d2d;color: #fff;margin: 20px;padding: 0;border-radius: 8px;box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);overflow: hidden;}
+body {padding: 0;margin: 0;overflow: hidden;}
+
+.nekodl {background: #2d2d2d;color: #fff;margin: 20px;border-radius: 8px;box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);overflow: hidden;}
+.nekodl .row .col{padding-right: 0;padding-left: 0;}
 
 .top {display: flex;justify-content: space-between;background: #2d2d2d !important;color: #fff;border-bottom: 1px solid #404040;-webkit-app-region: drag;}
 .top .logos {font-weight: 600;display: flex;align-items: center;gap: 8px;padding: 6px 0 6px 8px;}
+.top .logos span {display: block;font-size: .8rem;}
 .top .logos i {color: #ff6b6b;font-size: 1.2em;}
 
 .btn-group {-webkit-app-region: no-drag;}
@@ -13,7 +15,7 @@ body {/* background: #1a1a1a; */font-family: 'Segoe UI', Tahoma, Geneva, Verdana
 
 
 
-.mid {flex: 1;overflow: hidden;display: flex;flex-direction: column;}
+.mid {flex: 1;overflow: hidden;display: flex;flex-direction: column;padding: 0 .4em !important;}
 .mid .nav {  background: #2d2d2d;border-bottom: 1px solid #404040;padding: 0;font-size: 14px;}
 .mid .nav .nav-link {color: #aaa !important;padding: 6px 12px;transition: all 0.2s;border-bottom: 2px solid transparent;}
 .mid .nav .nav-link:hover,
@@ -27,7 +29,7 @@ body {/* background: #1a1a1a; */font-family: 'Segoe UI', Tahoma, Geneva, Verdana
 .mid .nav .dropdown-item:hover{background: none;}
 
 .ndl {background: #252525 !important;flex: 1;overflow-y: auto;}
-.ndl .form {gap: 10px;}
+.ndl .form {gap: 10px;margin-bottom: 12px !important;padding: .25rem !important;}
 .ndl .form input {background: #1a1a1a;border: 1px solid #404040;color: #fff;padding: 4px 0 4px 12px;}
 .ndl .form input:focus {background: #1a1a1a;color: #fff;border: 1px solid #ff6b6b;box-shadow: none !important;}
 .ndl .form input::placeholder {color: #666;}
@@ -35,122 +37,106 @@ body {/* background: #1a1a1a; */font-family: 'Segoe UI', Tahoma, Geneva, Verdana
 .ndl .form .btn.dl {background: #ff6b6b;color: #fff;border: none;transition: all 0.2s;white-space: nowrap;}
 .ndl .form .btn.dl:hover {background: #ff5252;}
 
-      .download-list {
-        margin-top: 15px;
-      }
+.download-list {display: block;}
 
-      .download-item {
-        background: #1a1a1a;
-        border: 1px solid #404040;
-        border-radius: 6px;
-        padding: 15px;
-        margin-bottom: 10px;
-        transition: all 0.2s;
-      }
+.download-item {
+background: #1a1a1a;
+border: 1px solid #404040;
+border-radius: 6px;
+padding: 15px;
+margin-bottom: 10px;
+transition: all 0.2s;
+}
 
-      .download-item:hover {
-        border-color: #ff6b6b;
-        transform: translateX(2px);
-      }
+.download-item:hover {
+border-color: #ff6b6b;
+transform: translateX(2px);
+}
 
-      .download-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 10px;
-      }
+.download-header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 10px;
+}
 
-      .download-name {
-        color: #fff;
-        font-weight: 500;
-        flex: 1;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
+.download-name {
+color: #fff;
+font-weight: 500;
+flex: 1;
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
+}
 
-      .download-size {
-        color: #888;
-        font-size: 0.9em;
-        margin-left: 15px;
-      }
+.download-size {
+color: #888;
+font-size: 0.9em;
+margin-left: 15px;
+}
 
-      .download-status {
-        display: flex;
-        gap: 8px;
-      }
+.download-status {
+display: flex;
+gap: 8px;
+}
 
-      .download-status .btn {
-        padding: 4px 10px;
-        font-size: 0.85em;
-      }
+.download-status .btn {
+padding: 4px 10px;
+font-size: 0.85em;
+}
 
-      .progress {
-        height: 8px;
-        background: #1a1a1a;
-        border: 1px solid #404040;
-      }
+.progress {
+height: 8px;
+background: #1a1a1a;
+border: 1px solid #404040;
+}
 
-      .progress-bar {
-        background: linear-gradient(90deg, #ff6b6b, #ff8e8e);
-        transition: width 0.3s ease;
-      }
+.progress-bar {
+background: linear-gradient(90deg, #ff6b6b, #ff8e8e);
+transition: width 0.3s ease;
+}
 
-      .download-info {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 8px;
-        font-size: 0.85em;
-        color: #888;
-      }
+.download-info {
+display: flex;
+justify-content: space-between;
+margin-top: 8px;
+font-size: 0.85em;
+color: #888;
+}
 
-      .status-badge {
+.status-badge {
         display: inline-block;
         padding: 2px 8px;
         border-radius: 3px;
         font-size: 0.75em;
         font-weight: 600;
         margin-right: 8px;
-      }
+}
 
-      .status-downloading {
+.status-downloading {
         background: #ff6b6b;
         color: #fff;
-      }
+}
 
-      .status-completed {
+.status-completed {
         background: #51cf66;
         color: #fff;
-      }
+}
 
-      .status-paused {
+.status-paused {
         background: #ffd43b;
         color: #333;
-      }
+}
 
-      .status-error {
+.status-error {
         background: #ff6b6b;
         color: #fff;
-      }
+}
 
-      .bot {
-        background: #2d2d2d;
-        border-top: 1px solid #404040;
-        padding: 10px 15px;
-        color: #888;
-        font-size: 0.85em;
-        display: flex;
-        justify-content: space-between;
-      }
 
-      .empty-state {
-        text-align: center;
-        padding: 60px 20px;
-        color: #666;
-      }
+.download-list .empty-state {text-align: center;padding: 60px 20px;color: #666;}
+.download-list .empty-state i {font-size: 4em;margin-bottom: 20px;opacity: 0.3;}
 
-      .empty-state i {
-        font-size: 4em;
-        margin-bottom: 20px;
-        opacity: 0.3;
-      }
+.bot {background: #2d2d2d;border-top: 1px solid #404040;padding: 10px 15px;color: #888;font-size: 0.85em;display: flex;justify-content: space-between;}
+.bot .dl-status {padding-left: 12px;}
+.bot .dl-speed {padding-right: 12px;}
